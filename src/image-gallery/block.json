@@ -1,0 +1,42 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "bn/image-gallery",
+	"version": "0.1.0",
+	"title": "Image Gallery",
+	"category": "block-nest",
+	"icon": "format-gallery",
+	"description": "Image gallery block with modern and attractive features.",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"attributes": {
+		"images": {
+			"type": "array",
+			"default": []
+		},
+		"galleryType": {
+			"type": "string",
+			"default": "grid"
+		},
+		"spacing": {
+			"type": "number",
+			"default": 10
+		},
+		"columns": {
+			"type": "number",
+			"default": 3
+		},
+		"enableLightbox": {
+			"type": "boolean",
+			"default": true
+		}
+	},
+	"textdomain": "block-nest",
+	"keywords": ["gallery", "images", "lightbox", "photos", "media"],
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js"
+}
