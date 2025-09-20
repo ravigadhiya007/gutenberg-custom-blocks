@@ -15,10 +15,41 @@ import { useBlockProps } from '@wordpress/block-editor';
  *
  * @return {Element} Element to render.
  */
-export default function save() {
+export default function save( props ) {
+
+	const { attributes, setAttributes } = props;
+	const { images, layout, spacing, columns, enableLightbox } = attributes;
+	var customClass = `block-nest-gallery-type-${layout} block-nest-gallery-col-${columns} block-nest-gallery-gutter-${spacing}`;
+	const blockProps = useBlockProps.save({
+		className: customClass
+	});
+	const galleryStyle = {
+		'--bn--gallery--layout': `${layout}`,
+		'--bn--gallery--col': `${columns}`,
+		'--bn--gallery--gutter': `${spacing}px`,
+	}
+
 	return (
-		<p { ...useBlockProps.save() }>
-			{ 'Image Gallery – hello from the saved content!' }
-		</p>
+		<div { ...blockProps } style={ galleryStyle }>
+			{images && images.map((image, index) => (
+				enableLightbox ? (
+					<a href={image.url} className={`gallery-item`} key={index}>
+						<img 
+							src={image.url}
+							alt={image.alt}
+							key={index}
+						/>
+					</a>
+				) : (
+					<div className={`gallery-item`} key={index}>
+						<img 
+							src={image.url}
+							alt={image.alt}
+							key={index}
+						/>
+					</div>
+				)
+			))}
+		</div>
 	);
 }

@@ -4,9 +4,38 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
-
-.wp-block-bn-image-gallery {
-	background-color: #21759b;
-	color: #fff;
-	padding: 2px;
+.wp-block-block-nest-image-gallery {
+	transition: all 0.5s ease-in-out;
+	&.block-nest-gallery-type-grid {
+		display: grid;
+		grid-template-columns: repeat( var(--bn--gallery--col), 1fr );
+		grid-template-rows: repeat( var(--bn--gallery--col), 1fr );
+		gap: var(--bn--gallery--gutter);
+		.gallery-item {
+			img {
+				width: 100%;
+				aspect-ratio: 1 / 1;
+				object-fit: cover;
+				display: block;
+			}
+		}
+	}
+	&.block-nest-gallery-type-masonry {
+		column-fill: initial;
+		column-count: var(--bn--gallery--col);
+		gap: var(--bn--gallery--gutter);
+		.gallery-item {
+			display: block;
+			box-sizing: border-box;
+			overflow: hidden;
+			margin-bottom: var(--bn--gallery--gutter);
+			transition: all 0.5s ease-in-out;
+			img {
+				display: block;
+				transition: all 0.23s ease-in-out;
+				backface-visibility: hidden;
+				width: 100%;
+			}
+		}
+	}
 }
